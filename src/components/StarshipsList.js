@@ -10,19 +10,22 @@ const StarshipsList = () => {
 		axios.get("https://swapi.dev/api/starships/").then(response => {
 			setStarshipsData(response.data);
 			setStarships(response.data.results)});
+			
 	}, []);
 	
 	const getID = (url) => {
 		let ID = url.match(/\d+/);
-		console.log(ID);
 		return ID[0]
 	}
 	
+	
+	
 	return (
 		<>
-		{starships.map((ship, index) => {
+		{starships.map((ship) => {
 			return <div key={"ship-"+getID(ship.url)}><Link  to={"starship/"+getID(ship.url)}>{ship.name}<br/>{ship.model}</Link></div>
 		})}
+		
 		</>
 	);
 };
@@ -43,7 +46,22 @@ export const Starship = () => {
 	
 	return (
 		<>
-		{<h1>{starship.name}</h1>}
+		<h1>Name: {starship.name}</h1>
+		<h3>Model: {starship.model}</h3>
+		<h3>Manufacturer: {starship.manufacturer}</h3>
+		<h3>Cost in credits: {starship.cost_in_credits}</h3>
+		<h3>Length: {starship.length}</h3>
+		<h3>Atmospheric Speed: {starship.max_atmosphering_speed}</h3>
+		<h3>Crew: {starship.crew}</h3>
+		<h3>Passengers: {starship.passengers}</h3>
+		<h3>Cargo capacity: {starship.cargo_capacity}</h3>
+		<h3>Consumables: {starship.consumables}</h3>
+		<h3>Hyperdrive Rating: {starship.hyperdrive_rating}</h3>
+		<h3>MGLT: {starship.MGLT}</h3>
+		<h3>Starship Class: {starship.starship_class}</h3>
+		<h3>Pilots: {starship.pilots}</h3>
+		<h3>Films: {starship.films}</h3>
+		
 		</>
 	);
 	
